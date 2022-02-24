@@ -5,13 +5,13 @@ export default class Users extends BaseSchema {
 
   public async up() {
     this.schema.table(this.tableName, (table) => {
-      table.renameColumn('email', 'email')
+      table.uuid('sucure_id').unique().after('id')
     })
   }
 
   public async down() {
-    this.schema.table(this.tableName, (table) => {
-      table.dropColumn('e-mail')
+    this.schema.alterTable(this.tableName, (table) => {
+      table.dropColumn('secure_id')
     })
   }
 }
